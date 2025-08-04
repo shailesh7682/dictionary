@@ -23,9 +23,10 @@ h1 {
 }
 
 .form {
-    margin: 30px 0 0;
+    margin: 30px auto 0;
     padding: 15px 30px;
     text-align: center;
+    max-width: 700px;
 }
 
 .form input {
@@ -49,4 +50,28 @@ button.form_btn {
 
 button.form_btn:hover {
     background: aqua;
+}
+
+.content {
+    max-width: 700px;
+    margin: 30px auto 0;
+    padding: 0 30px;
+}
+
+.content p {
+    margin: 16px 0 0;
+    position: relative;
+}
+
+.content p:before {
+    content: '';
+    padding: initial;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 5px;
+    background: #000;
+    display: inline-block;
+    border-radius: 50%;
+    margin-right: 10px;
 }
