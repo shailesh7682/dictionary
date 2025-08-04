@@ -1,6 +1,8 @@
 const button = document.querySelector(".form_btn");
 const input = document.querySelector(".form input");
 const contentWrapper = document.querySelector('.content');
+const result = contentWrapper.querySelector('.result');
+const loader = contentWrapper.querySelector('.loader');
 
 if (button) {
   button.addEventListener("click", (e) => {
@@ -8,9 +10,16 @@ if (button) {
     let content = input.value;
     console.log(content);
     if(content != '') {
+        if(loader) {
+            loader.classList.remove('hidden');
+        }
+
+        if(result) {
+            result.classList.add('hidden');
+        }
         handleClick(content);       
     } else {
-        console.log('error')
+        result.innerHTML = `<span class="error" style="color:red;">Enter some queries!!</span>`
     }    
   });
 }
@@ -23,13 +32,16 @@ function handleClick(content) {
         let definitionsHTML = '';
         meanings.forEach((meaning) => {
             let definition = meaning.definitions[0].definition;
-            console.log(definition)
             definitionsHTML += `<p>${definition}</p>`
         })
 
-        contentWrapper.innerHTML = definitionsHTML
+        loader.classList.add('hidden');
+        result.classList.remove('hidden');
+        result.innerHTML = definitionsHTML
     })
     .catch((error) =>{
-        console.log(error)
+        loader.classList.add('hidden');
+        result.classList.remove('hidden');
+        result.innerHTML = `<span class="error" style="color:red;">No definitions found!!</span>`
     })
 }
